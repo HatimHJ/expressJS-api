@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  .form 
+    form( action='/books' autocomplete='off' method='POST')
+      label(for='title') title
+      input(name='title' type='text' value='Frank')
+      br
+      label(for='author') author
+      input(name='author' type='text' value='Frank')
+      br
+      label(for='comments') comments
+      input(name='comments' type='text' value='Frank')
+      br
+      br
+      input(type='submit' value='Submit')
+
+  .books
+    each book in data
+      .book
+        h3 #{book.Title}
+        h6 #{book.Author}
+        h6 #{book.Comments}
+    else
+      h3 There are no values
