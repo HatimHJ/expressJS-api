@@ -4,10 +4,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const app = express();
-
-// db
+require("dotenv").config();
+// db sql
+/**
+ *const db = require("./db/db");
+ *const sql = require("./db/query");
+ */
+// db mongodb
 const db = require("./db/db");
-const sql = require("./db/query");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -45,7 +49,18 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-// db connaction
-db.run(sql.sql_create, (err) => err && console.error(err.message));
+// db sql connaction
+// db.run(sql.sql_create, (err) => err && console.error(err.message));
 
+// db monogdb connaction
+const coonnect = async () => {
+	try {
+		await db(process.env.MONGO_URI);
+		console.log("fffffff");
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+coonnect();
 module.exports = app;
