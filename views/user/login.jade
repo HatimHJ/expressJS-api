@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    .form 
+      form( action=`/users/login` autocomplete='off' method='POST')
+        label(for='name') name
+        input(name='name'  type='text' )
+        br
+        label(for='password') password
+        input(name='password'  type='text' )
+        br
+        br
+        input(type='submit' value='Submit')
+
+    a(href=`/books`) home

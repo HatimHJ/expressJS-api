@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  if username
+    h2 session #{username}
+    h2 session #{email}
+    form( action=`/users/logout`  method='POST')
+      input(type='submit' value='logout')
+    a(href="/books/create") create new
+  else 
+    a(href="/users/login") login
+  h1= title
+  .books
+    each book in books
+      .book
+        h3
+          a(href=`/books/${book._id}`) #{book.title}
+        h6 #{book.author}
+        h6 #{book.comments}
+    else
+      h3 There are no values

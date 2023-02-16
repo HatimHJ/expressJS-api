@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    
+    .books
+    if(book)
+      .book
+        h3 #{book.title}
+        h6 #{book.author}
+        h6 #{book.comments}
+        if username
+          .controll 
+            h6 
+              a(href=`/books/edit/${book._id}`) update            
+            h6 
+              form( action=`/books/destroy/${book._id}` id='update_post' method='POST')
+                input( id='id' value=`${book._id}` type='hidden' )
+                input(type='submit' value='Submit')
+
+    else
+      h3 There are no values
+
+    a(href=`/books`) home
+      
