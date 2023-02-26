@@ -1,0 +1,106 @@
+<%- include('../inc/header'); -%>
+	<%- include('../inc/deleteLisitngModal'); -%>
+
+<div class="container">
+  <%- include('../inc/message'); -%>
+	<div class="row my-3">
+			<div class="col-md-12 mb-4">
+				<div class="card">				
+					<div class="card-body">
+						<div class="title-control mb-4 d-flex justify-content-between align-items-end pb-2 border-bottom gap-4">				
+							<h5 class=""><%= listing.title %></h5>
+							<% if((isLogged && listing.user_id == user_id) || (isLogged && email == 'admin@admin.com')){ %>
+							<div class="btn-group" role="group">
+								<a href="/listings/edit/<%= listing._id%>" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-title="edit" class="btn btn-outline-warning">
+									<i data-feather="edit"></i>
+								</a>
+								<button type="button" class="btn btn-primary" 
+												data-bs-toggle="modal" 
+												data-bs-target="#deleteListing">
+										<i data-feather="trash"></i>
+										
+								</button>								
+								
+							</div>
+							<% } %>
+							</div>
+							<p class="card-text"><%= listing.desc %></p>
+							<div class="d-flex justify-content-between">						
+								<p class="fw-bold h4">$<%= listing.price %></p>
+								<p class="text-muted h4"><%= user.name %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% /* offer form */ %>
+		<% let hideForm = false  %>
+		<% if(isLogged && offers.length){
+				for(i=0; i< offers.length; i++ ){
+					if(offers[i].isSelected || offers[i].user_id == user_id) {
+						hideForm = true
+						break
+					}
+				}
+			} %>			
+		<% if(isLogged && user_id !== listing.user_id && !hideForm){ %>
+		<div class="row my-2 bg-white">
+			<div class="col-10 offset-1 col-md-12 offset-md-0 border py-4">
+				<form  action="/listings/offer/<%= listing._id%>" method="POST">
+					<div class="d-flex flex-column flex-md-row justify-content-start justify-content-md-between align-items-start align-items-md-center gap-2">
+						<div class="mb-3 order-2 order-md-1 align-self-stretch">
+							<label for="price" class="form-label">price</label>
+							<input type="text"  class="form-control" id="price" name="price"/>
+						</div>
+						<button type="submit" class="btn px-5 btn-primary order-1 order-md-2">Submit</button>
+					</div>
+					<div class="mb-3">        
+						<label for="description" class="form-label">description</label>
+						<textarea name="desc" id="description" 
+							class="form-control" rows="4" cols="4"></textarea>
+					</div>
+				</form>
+			</div>
+		</div>		
+		<% } %>
+		<% /* offer list */ %>
+		<div class="row my-2">
+		<% if(offers.length){ offers.forEach(function(offer){ %>
+			<div class="col-12 mb-4 ">
+				<div class="card <%= offer.isSelected ? 'border border-primary':'' %>" >
+					<div class="card-body text-start">
+					<% if(isLogged && user_id == listing.user_id && !hideForm){ %>
+						<form method="POST" action="/listings/select/<%= listing._id %>">
+							<input type="hidden" name="offer_id" value="<%= offer._id %>"/>
+							<button type="submit" class="btn btn-outline-primary fw-bold">select</button>
+						</form>
+					<% } %>
+
+						<div class="d-flex justify-content-between ">						
+							<p class="fw-bold text-secondary  h5"><%= offer.desc %></p>
+							<p class="text-muted h6"><%= offer.price %></p>
+							<p class="text-muted h6"><%= offer.user_id %></p>							
+						</div>
+					</div>
+				</div>
+			</div>
+		<% });}else{ %>
+		<div class="col-sm-12 mb-4">
+			<div class="card text-center shadow-sm" >
+				<div class="card-body">
+					<h5 class="card-title">→ no offer available ←</h5>
+				</div>
+			</div>
+    </div>
+		<% } %>
+		</div>
+</div>
+
+<script>
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	myModal.addEventListener('shown.bs.modal', () => {
+			myInput.focus()
+	})
+</script>
+<%- include('../inc/footer'); -%>

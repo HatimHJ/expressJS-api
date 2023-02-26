@@ -1,0 +1,29 @@
+<%- include('../inc/header'); -%> 
+
+<div class="container">
+	<h1 class="bg-primary text-white rounded-bottom shadow-sm p-4">
+		<%= title %>
+	</h1>
+	<div class="row my-3">
+		<div class="col-3">
+      <form action="/users/dashboard" autocomplete="off" method="POST">
+          <input type="hidden" value= '<%= id %>' name="id"/>
+      
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" value= '<%= username %>' class="form-control" id="name" name="name"/>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">email</label>
+          <input type="email" value= '<%= email %>' class="form-control" id="email" name="email"/>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" value= '<%= password %>' name="password" class="form-control" id="password" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+	</div>
+</div>
+<%- include('../inc/footer'); -%>

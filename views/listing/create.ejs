@@ -1,0 +1,48 @@
+<%- include('../inc/header'); -%> 
+<div class="container">
+  <%- include('../inc/message'); -%>
+	<div class="row my-3">  
+	<div class="col-md-4">  
+    <h3>Rules...</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <small>
+            <i data-feather="circle"></i>
+            <span>name must be longer than 10 char</span>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <i data-feather="circle"></i>
+            <span>name must be longer than 50 char.</span>
+          </small>
+        </li>
+      </ul>
+    
+	</div>  
+
+		<div class="col-md-4 shadow-sm p-3 shadow-sm border-top border-primary border-3">
+      <h3 class=" my-2 d-flex justify-content-center align-items-center gap-2">
+        <i data-feather="coffee" ></i>
+        <span>Add Listing</span>
+      </h3>
+      <form action="/listings/create"  method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text"  class="form-control" id="title" name="title"/>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">price</label>
+          <input type="text"  class="form-control" id="price" name="price"/>
+        </div>
+        <div class="mb-3">        
+          <label for="description" class="form-label">description</label>
+          <textarea name="desc" id="description" 
+            class="form-control" rows="10" cols="4"></textarea>
+        </div>
+        <button type="submit" class="btn px-5 btn-primary">Submit</button>
+      </form>
+    </div>
+	</>
+</div>
+<%- include('../inc/footer'); -%>

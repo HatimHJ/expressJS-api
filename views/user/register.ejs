@@ -1,0 +1,40 @@
+<%- include('../inc/header'); -%> 
+<div class="container">
+  <%- include('../inc/message'); -%>
+	<div class="row mt-5">
+		<div class="offset-md-4 p-4 bg-white offset-1 col-10  col-md-4 shadow-sm border-top border-secondary border-3">
+      <h3 class="py-2 mb-2 d-flex justify-content-center align-items-center gap-2">
+        <i data-feather="user-plus"></i>
+        <span><%= title.toUpperCase() %></span>
+      </h3>
+      <ul class="list-group list-group-flush my-3">
+        <li class="list-group-item list-group-item-light text-muted ">
+          <i data-feather="info"></i>
+          <small> name must be more than 3 chars</small>
+        </li>
+        <li class="list-group-item list-group-item-light text-muted " >
+          <i data-feather="info" ></i>
+          <small>password must be more than 4 chars</small>
+        </li>
+      </ul>
+      <form action="/users/register" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name"/>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">email</label>
+          <input type="email" class="form-control" id="email" name="email"/>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="password" />
+        </div>
+        <div class="d-grid mt-4 mx-auto">
+          <button type="submit" class="btn  btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+	</div>
+</div>
+<%- include('../inc/footer'); -%>

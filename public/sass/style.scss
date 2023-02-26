@@ -1,0 +1,44 @@
+body {
+	--bs-navbar-toggler-border-color: #fdcb6e !important;
+	--bs-navbar-active-color: #fdcb6e !important;
+	--bs-navbar-hover-color: #fdcb6e !important;
+	--bs-navbar-color: #fdcb6e !important;
+}
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$primary: #d90070;
+$secondary: #b2bec3;
+$success: #00b894;
+$warning: #fdcb6e;
+$danger: #d63031;
+$light: #f9f9f9;
+$dark: #2d3436;
+
+$theme-colors: (
+	"primary": $primary,
+	"secondary": $secondary,
+	"success": $success,
+	"warning": $warning,
+	"danger": $danger,
+	"light": $light,
+	"dark": $dark,
+	"yellow": $yellow-300,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@debug ();
+
+.custom-element {
+	color: $gray-200;
+	border: 2px dotted $yellow-300;
+}
+.custom-element:hover {
+	background-color: $yellow-300;
+	color: $primary;
+}
+
+.navbar-toggler {
+	color: var(--bs-navbar-color) !important;
+}

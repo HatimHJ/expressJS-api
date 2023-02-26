@@ -1,0 +1,29 @@
+<%- include('../inc/header'); -%> 
+
+<div class="container">
+  <%- include('../inc/message'); -%>
+	<div class="row my-3">    
+		<div class="px-0 offset-md-4 offset-1 col-10  col-md-4 shadow-sm  shadow-sm ">
+    <h3 class="d-flex justify-content-center align-items-center  p-2 gap-2 bg-dark text-light">
+        <i data-feather="edit" ></i>
+        <span>Edit Listing</span>
+      </h3>
+      <form action="/listings/edit/<%= listing._id %>" class="p-4" autocomplete="off" method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" value= '<%= listing.title %>' class="form-control" id="title" name="title"/>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">price</label>
+          <input type="text" value= '<%= listing.price %>' class="form-control" id="price" name="price"/>
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">description</label>
+          <textarea name="desc" id="description" class="form-control" rows="10" cols="4"><%= listing.desc %></textarea>
+        </div>
+        <button type="submit" class="btn px-5 btn-primary">Submit</button>
+      </form>
+    </div>
+	</div>
+</div>
+<%- include('../inc/footer'); -%>

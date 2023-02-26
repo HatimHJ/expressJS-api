@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-light   ">
+	<div class="container">
+		<a class="navbar-brand fw-bold custom-element" href="/">Listings __&__ </a>
+		<button
+			class="navbar-toggler btn-yellow"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+		>
+			<span class="navbar-toggler-icon "></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav d-flex  justify-content-between w-100   mb-2 mb-lg-0">
+				<div class="left d-flex gap-4 align-items-center  " >			
+					<li class="nav-item ">
+						<a href="/listings" class="mb-2 mb-lg-0 fs-5 nav-link text-yellow" >
+							Listings
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="/search" class="mb-2 mb-lg-0 nav-link text-yellow">
+							<i  data-feather="search" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="search"></i>
+						</a>
+					</li>
+				</div>			
+				<div class="d-flex justify-content-md-end">
+					<% if(isLogged){ %>
+						<li class="nav-item mx-2">
+							<a href="/listings/create" class="btn ">
+								<i data-feather="plus" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="create"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div class="btn-group" role="group">
+								<a href="/users/dashboard" class="btn ">								
+									<span><%= username %></span>
+								</a>
+								<form class="btn-group" action="/users/logout" method="post">
+									<button class="btn btn-outline-danger" >
+										<i data-feather="log-out"></i>
+									</button>
+								</form>
+							</div>
+						</li>
+						
+					<% }else{ %>
+					<li class="nav-item">
+						<div
+							class="btn-group"
+							role="group"
+							aria-label="Basic outlined example"
+						>
+							<a href="/users/login" class="text-yellow btn">
+								<i data-feather="log-in" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="login"></i>
+							</a>
+							<a href="/users/register" class="text-yellow btn" >
+								<i data-feather="user" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="register" ></i>
+							</a>
+						</div>
+					</li>
+					<% } %>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>

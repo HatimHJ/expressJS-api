@@ -1,0 +1,48 @@
+<%- include('../inc/header'); -%>
+<div class="container">
+  <%- include('../inc/message'); -%>    
+  <div class="row my-3">
+    <% if(listings.length) {
+      listings.forEach(function(listing){ %>
+    <div class="col-12 mb-4 ">
+      <a href="/listings/show/<%=listing._id%>" class="btn w-100 btn-light">
+        <div class="card" >
+          <div class="card-body text-start">
+              <div class="d-flex justify-content-between">						
+                <p class="fw-bold text-secondary  h5"><%= listing.title %></p>
+                <p class="text-muted h6"><%= listing.createdAt.toString().split(' GMT')[0] %></p>
+              </div>
+            <p class="card-text text-muted  my-4"><%= listing.desc %></p>
+            <div class="d-flex justify-content-between">						
+              <p class="fw-bold text-secondary h6">$<%= listing.price %></p>
+              <p class="text-muted h6"><%= listing.user_name %></p>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>     
+    <% }) %> 
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+    <% 
+    const perPage =  2 
+    const pages =  Math.ceil((totallistings / perPage))
+      for(let x=1; x <= pages; x++) {
+    %>
+    <li class="page-item"><a class="page-link" href="/listings?page=<%= x %>"><%= x %></a></li>
+    <% } %>
+    </ul>
+  </nav>
+
+    <% } else { %>    
+    <div class="col-sm-12 mb-4">
+        <div class="card text-center shadow-sm" >
+          <div class="card-body">
+            <h5 class="card-title">no listing available...</h5>
+          </div>
+        </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<%- include('../inc/footer'); -%>
